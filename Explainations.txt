@@ -1,0 +1,34 @@
+How to run the script:
+1. change the hyperparameter 'root' in the logo_detection.py to the absolute root of the directory which stores the images
+2. run the script with the image name, such as 'python logo_detection.py bank_of_america.jpg' (same as the input in the Github page)
+
+Explainations:
+Due to the limitation of time to solve this problem, I didn't try any deep learning algorithm in this coding challenge. (I don't have enough time to gather and label the training dataset and my hardware cannot train a model in a short time limited by its computation ability)
+Considered Algorithms:
+1. template matching (what I applied in the end)
+reason:
+a. logo detection problem don't have much deform and rotate problem. In most cases, the part to be detected in the image is the same as the template.
+b. Don't need too much data.
+
+tweaking needed to be done:
+Need to perform multi-scale template matching here due to the logos are in different sizes.
+
+2. SIFT feature matching
+reason: 
+a. logo has a fixed feature point distribution, which is different from other logos/objects.
+b. Don't need too much data.
+
+tweaking needed to be done:
+Need to consider the evaluation of the matching (e.g., average distance) to decide which matching is the best, and then to decide which class that the input image belongs to.
+
+3. haar cascade
+reason:
+a. haar classifier considers several image features, such as edge features, line features, etc. These features typically make logo different from surrounding objects.
+
+tweaking needed to be done:
+a. Need to gather and mark data.
+b. Need to design a algorithm to perform the multi-class classification since the haar classifer is originally a binary classifier.
+
+More about my work:
+I only tried the first two algorithms above and both of them didn't yield perfect results. Multi-scale template matching performs better. Thus I decided to apply this method in the end. I think the reason why this method cannot work perfectly is the range of the scale cannot work for all cases, and the template will be vague if you shrink the size too much, which will cause errors.
+Thus, I think haar cascade or other deep learning algorithms will work better since this problem is hard to use the rule or knowledge-based cv methods to fully solve (template matching or feature matching methods in this case). However, I cannot try them due to the time limitation. I will try these methods if I have more time with this problem.
